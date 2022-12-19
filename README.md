@@ -6,12 +6,12 @@
 Choix tech : SQLite
 
 
-|ANIMAUX|      USERS   |    ESPECE |    ENCLOS |       TOKEN   |    FAVORIS|
-|-------|   -----------|    -------|    -------|    -----------|    -   
-|id     |   id         |    id     |    id     |    id         |    user    |
-|nom    |   mdp        |    nom    |    pos    |    user       |    animal|
-|espece |   role       |           |           |    lifetime   ||
-
+|ANIMAUX|      USERS   |    ESPECE |    ENCLOS |       TOKEN   |    FAVORIS |    ROLE   |
+|-------|   -----------|    -------|    -------|    -----------|    -       |    -      |
+|id     |   id         |    id     |    id     |    id         |    user    |   id      |
+|nom    |   ndc        |    nom    |    pos    |    user       |    animal  |     nom   |
+|espece |   mdp        |           |           |    lifetime   |            |           |
+|       |   role       |           |           |               |            |           |  
 
 ## PLAN DU SITE
 
