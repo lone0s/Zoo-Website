@@ -23,10 +23,10 @@ const enclos = [
 ]
 
 const animals = [
-    {nom : "Lion d'Asie", nomComplet : "Panthera leo persica", idEspece : 0, idEnclos : 0},
-    {nom : "Lion d'Afrique", nomComplet : "Panthera leo leo", idEspece: 0, idEnclos : 0},
-    {nom : "Leopard de Perse", nomComplet : "Panthera pardus saxicolor", idEspece: 1, idEnclos: 1},
-    {nom : "Leopard indien", nomComplet: "Panthera pardus fusca", idEspece: 1, idEnclos: 1}
+    {nom : "Lion d'Asie", idEspece : 0, idEnclos : 0, nomComplet : "Panthera leo persica"},
+    {nom : "Lion d'Afrique", idEspece: 0, idEnclos : 0, nomComplet : "Panthera leo leo"},
+    {nom : "Leopard de Perse", idEspece: 1, idEnclos: 1, nomComplet : "Panthera pardus saxicolor"},
+    {nom : "Leopard indien", idEspece: 1, idEnclos: 1, nomComplet: "Panthera pardus fusca"}
 ];
 
 
@@ -367,4 +367,69 @@ function getRoleName(id) {
         return res;
 }
 
+
+function insertCreator(tableName, fields) {
+    let sql = `INSERT INTO ${tableName} VALUES (NULL`;
+    for (let i = 0; i < fields.length; i++) {
+        sql += ",?";
+    }
+    sql += ")";
+    return sql;
+}
+
+
+
+function deleteCreator(tableName, fields) {
+    let sql = `DELETE FROM ${tableName} WHERE `;
+    for (let i = 0; i < fields.length; i++) {
+        sql += `${fields[i]} = ?`;
+        if (i < fields.length - 1)
+            sql += " AND ";
+    }
+    return sql;
+}
+
+function updateCreator(tableName, fields, id) {
+    let sql = `UPDATE ${tableName} SET `;
+    for (let i = 0; i < fields.length; i++) {
+        sql += `${fields[i]} = ?`;
+        if (i < fields.length - 1)
+            sql += ",";
+    }
+    sql += ` WHERE id${tableName} = ${id}`;
+    return sql;
+}
+
+const tabl = "ANIMAL"
+const flds = Object.keys(animals[0]);
+console.log(flds[0]);
+const values = Object.values(animals[0]);
+
+// const insert = insertCreator(tabl, flds);
+// console.log(insert);
+
+function selectCreator(tableName, fields) {
+    let sql = `SELECT * FROM ${tableName}`;
+    console.log(sql);
+    if (fields !== undefined) {
+        sql += " WHERE ";
+        for (let i = 0; i < fields.length; i++) {
+            sql += `${fields[i]} = ?`;
+            if (i < fields.length - 1)
+                sql += " AND ";
+        }
+    }
+    return sql;
+}
+
+
+function get(tableName,fields,values) {
+    let sql = selectCreator(tableName,fields);
+    let res = db.prepare(sql).get(values);
+    if (res === undefined)
+        throw(`No ${tableName} with ${fields} = ${values}`);
+    else
+        return res;
+}
+get("ANIMAL");
 
