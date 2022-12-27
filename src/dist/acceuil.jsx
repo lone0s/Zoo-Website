@@ -3,9 +3,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 /**Composant**/
-const Acceuil = <div>Voici la page d'acceuil</div>
+class Acceuil extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            events: [],
+        }
+    }
 
-//TODO
+    render(){ //TODO
+        return(
+            <div>Widget de la page d'accueil</div>
+        )
+    }
+}
 
 
 /**Render**/
