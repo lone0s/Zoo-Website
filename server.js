@@ -27,6 +27,16 @@ app.get('/acceuil', (req, res) => {
 
 //TODO : Definir toutes les routes
 
+/**Donnees**/
+
+app.post("/_api/connectedUser", (req, res)=>{
+    //TODO
+});
+
+app.post("/_api/animals", (req, res)=>{
+    //TODO
+});
+
 /**------------------------------------------------------------------------------------------------**/
 
 /**Server setup**/
