@@ -9,4 +9,4 @@ const Acceuil = <div>Voici la page d'acceuil</div>
 
 
 /**Render**/
-ReactDOM.render(Acceuil, document.getElementById("root"))
+ReactDOM.render(<Acceuil/>, document.getElementById("root"))

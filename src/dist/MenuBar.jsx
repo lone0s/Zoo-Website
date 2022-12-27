@@ -9,4 +9,4 @@ const MenuBar = <div>Voici la page d'acceuil</div>
 
 
 /**Render**/
-ReactDOM.render(/*TODO*/, document.getElementById("root"))
+ReactDOM.render(<MenuBar/>, document.getElementById("root"))
