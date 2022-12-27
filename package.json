@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "react": "parcel -p 3000"
   },
   "dependencies": {
     "better-sqlite3": "^8.0.1",
