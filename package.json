@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon src/server.js",
+    "start": "nodemon server.js",
     "react": "parcel -p 3000",
     "build": "parcel build"
   },
