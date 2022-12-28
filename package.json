@@ -2,7 +2,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "react": "parcel -p 3000",
-    "build": "parcel build"
+    "build": "parcel build index.jsx"
   },
   "dependencies": {
     "better-sqlite3": "^8.0.1",
