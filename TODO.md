@@ -1,8 +1,8 @@
-* Widget Menu
-    
-## API Routes :
+## Divers
+ * Widget Menu
+ * Fonction faisant un fecth du user connecté sur la session (factorisation du code)
  * `/_api/connectedUser`
-   * Contiens l'utilisateur connecté
+   * Contiens l'utilisateur connecté sur la session
  * `/_api/animals`
    * Contiens la liste des annimaux
 
@@ -17,23 +17,23 @@
    * CSS (Optionel)
  * ZooMap
    * Widget Enclos
-    * Prends en argument un x et un y en arguments, affiche la liste des annimaux à cet enclos aux coordonnes indiquees sur la page
+     * Prends en argument un x et un y en arguments, affiche la liste des annimaux à cet enclos aux coordonnes indiquees sur la page
    * ZooMap.html
    * CSS (Optionel)
  * AnimalList.html
    * CSS (Optionel)
-   * Widget Admin (Optionel)
+   * Widget AdminView (Optionel)
      * Ajout d'un animal
      * Suppression d'un animal
      * Modifier un animal
-   * Widget User
+   * Widget UserView
  * ConnectedUsers.html (admin only) (Optionel)
    * Permet à un admin de déconnecter un User
    * CSS (Optionel)
 
 ## Objets JS :
  * Animals
-   * Coral [Enclos]
+   * Coral (Enclos) (enum)
      * Enum correspondant aux enclos de la BDD
  * User
    * User auth level (enum)
@@ -42,34 +42,37 @@
 
 ## BDD :
  ### Ajout :
-   * Animal
-   * Utilisateur
+   ~~* Animal~~
+   ~~* Utilisateur~~
    * Token
-   * Espèce
+   ~~* Espèce~~
  ### Suppresion :
    * Token
-   * Animal
+   ~~* Animal~~
+   ~~* User~~
  ### Accès :
    * Animaux w/ enclos
    * User w/ token
-   * Animaux par enclos
-   * Enclos
+   * Enclos w/ Animaux
+   ~~* Enclos~~
 
 
 # Attribution des tâches :
   ## Alessandro :
    * Connexion / Inscription
    * CSS Global
-   * 
+   * AnimalList côté user
   ## Souhail :
    * BDD
+     * Token
+     * Animaux w/ enclos
+     * User w/ token
+     * Enclos w/ Animaux
    * Acceuil
-   * 
   ## Erwann :
    * Widget Menu
-   * AnimalList côté user
    * AnimalList côté admin
-## Ibrahïm :
+  ## Ibrahïm :
    * Mapping BDD / Objet JS Animals
    * Mapping BDD / Objet JS User
    * `/_api/connectedUser`
