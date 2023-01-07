@@ -9,9 +9,9 @@ Choix tech : SQLite
 |ANIMAUX|      USERS   |    ESPECE |    ENCLOS |       TOKEN   |    FAVORIS |    ROLE   |
 |-------|   -----------|    -------|    -------|    -----------|    -       |    -      |
 |id     |   id         |    id     |    id     |    id         |    user    |   id      |
-|nom    |   ndc        |    nom    |    pos    |    user       |    animal  |     nom   |
+|nom    |   ndc        |    nom    |    pos    |    user       |    animal  |   nom     |
 |espece |   mdp        |           |           |    lifetime   |            |           |
-|       |   role       |           |           |               |            |           |  
+|imagePath| role       |           |           |               |            |           |  
 
 ## PLAN DU SITE
 
@@ -49,9 +49,6 @@ Une page, une route
       Name : String,
       Description : String,
       Specie : String,
-      map_location : {
-            x : int,
-            y : int,
-            },
+      map_location : {enum},
    }
 
