@@ -57,21 +57,21 @@
 
 
 # Attribution des tâches :
-## Alessandro :
-  * Connexion / Inscription
-  * CSS Global
-  * 
-## Souhail :
-  * BDD
-  * Acceuil
-  * 
-## Erwann :
-  * Widget Menu
-  * AnimalList côté user
-  * 
+  ## Alessandro :
+   * Connexion / Inscription
+   * CSS Global
+   * 
+  ## Souhail :
+   * BDD
+   * Acceuil
+   * 
+  ## Erwann :
+   * Widget Menu
+   * AnimalList côté user
+   * 
 ## Ibrahïm :
-  * Objet JS Animals
-  * Objet JS User
-  * `/_api/connectedUser`
-  * `/_api/animals`
-  * ZooMap
+   * Objet JS Animals
+   * Objet JS User
+   * `/_api/connectedUser`
+   * `/_api/animals`
+   * ZooMap
