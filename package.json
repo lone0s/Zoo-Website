@@ -1,8 +1,8 @@
 {
   "scripts": {
     "start": "nodemon server.js",
-    "react": "parcel -p 1234 *.jsx",
-    "build": "parcel build index.jsx"
+    "react": "parcel index.jsx ./src/dist/acceuil.jsx -p 1234",
+    "build": "parcel build index.jsx ./src/dist/acceuil.jsx"
   },
   "dependencies": {
     "better-sqlite3": "^8.0.1",
