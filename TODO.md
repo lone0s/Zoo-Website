@@ -70,8 +70,8 @@
    * AnimalList côté user
    * 
 ## Ibrahïm :
-   * Objet JS Animals
-   * Objet JS User
+   * Mapping BDD / Objet JS Animals
+   * Mapping BDD / Objet JS User
    * `/_api/connectedUser`
    * `/_api/animals`
    * ZooMap
