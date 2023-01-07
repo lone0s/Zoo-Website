@@ -27,15 +27,29 @@ Une page, une route
 
 * Menu
     * Bouton "Accueil" 
-        *  Ne s'affiche pas si on est deja sur la page d'accueuil
+        *  Ne s'affiche pas si on est deja sur la __page d'accueuil__
     * Bouton "Connexion"
-        * Ne s'affiche pas si on est deja connecté
+        * Ne s'affiche pas si on est deja __connecté__
     * Bouton "Inscription" 
-        * Ne s'affiche pas si on est deja connecté
+        * Ne s'affiche pas si on est deja __connecté__
     * Bouton "Déconnexion"
-        * Ne s'affiche pas si on est pas connecté
+        * Ne s'affiche pas si on est __pas__ connecté
     * Bouton "Animaux"
     * Bouton "Favoris"
-        * Ne s'affiche pas si on est pas connecté
-    
+        * Ne s'affiche pas si on est __pas__ connecté
+## JS "Objets"
+   User {
+      id : int,
+      authorisation_level : String,
+   }
+   
+   Animal {
+      Name : String,
+      Description : String,
+      Specie : String,
+      map_location : {
+            x : int,
+            y : int,
+            },
+   }
 
