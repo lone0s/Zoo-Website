@@ -8,15 +8,16 @@
 
 ## Pages
  * Acceuil
-   * Widget
+   * Widget Acceuil
    * Acceuil.html
    * CSS (Optionel)
  * Connexion / Inscription
-   * Widget
+   * Widget Connect
    * InscriptionConnexion.html
    * CSS (Optionel)
  * ZooMap
-   * Widget
+   * Widget Enclos
+    * Prends en argument un x et un y en arguments, affiche la liste des annimaux à cet enclos aux coordonnes indiquees sur la page
    * ZooMap.html
    * CSS (Optionel)
  * AnimalList.html
@@ -52,3 +53,25 @@
    * Animaux w/ enclos
    * User w/ token
    * Animaux par enclos
+   * Enclos
+
+
+# Attribution des tâches :
+    ## Alessandro :
+        * Connexion / Inscription
+        * CSS Global
+        * 
+    ## Souhail :
+        * BDD
+        * Acceuil
+        * 
+    ## Erwann :
+        * Widget Menu
+        * AnimalList côté user
+        * 
+    ## Ibrahïm :
+        * Objet JS Animals
+        * Objet JS User
+        * `/_api/connectedUser`
+        * `/_api/animals`
+        * ZooMap
