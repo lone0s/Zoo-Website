@@ -42,19 +42,19 @@
 
 ## BDD :
  ### Ajout :
-   ~~* Animal~~
-   ~~* Utilisateur~~
+   * ~~Animal~~
+   * ~~Utilisateur~~
    * Token
-   ~~* Espèce~~
+   * ~~Espèce~~
  ### Suppresion :
    * Token
-   ~~* Animal~~
-   ~~* User~~
+   * ~~Animal~~
+   * ~~User~~
  ### Accès :
    * Animaux w/ enclos
    * User w/ token
    * Enclos w/ Animaux
-   ~~* Enclos~~
+   * ~~Enclos~~
 
 
 # Attribution des tâches :
