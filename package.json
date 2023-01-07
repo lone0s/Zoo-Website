@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "nodemon server.js",
-    "react": "parcel -p 3000",
+    "react": "parcel -p 1234 *.jsx",
     "build": "parcel build index.jsx"
   },
   "dependencies": {
@@ -12,5 +12,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sqlite3": "^5.1.4"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
   }
 }

@@ -2,6 +2,8 @@
 const express = require("express")
 const app = express()
 
+let fs = require ('fs')
+
 /**Server params**/
 const hostname = '127.0.0.1';
 const port = 8000;
@@ -22,8 +24,8 @@ app.get('/',
 );
 
 app.get('/acceuil', (req, res) => {
-    res.send("Page d'acceuil")
-})
+    res.sendFile(__dirname + '/src/public/acceuil.html');
+});
 
 //TODO : Definir toutes les routes
 
