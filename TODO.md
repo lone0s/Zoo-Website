@@ -22,11 +22,11 @@
    * CSS (Optionel)
  * AnimalList.html
    * CSS (Optionel)
-   * Côté Admin (Optionel)
+   * Widget Admin (Optionel)
      * Ajout d'un animal
      * Suppression d'un animal
      * Modifier un animal
-   * Côté User
+   * Widget User
  * ConnectedUsers.html (admin only) (Optionel)
    * Permet à un admin de déconnecter un User
    * CSS (Optionel)
@@ -68,7 +68,7 @@
   ## Erwann :
    * Widget Menu
    * AnimalList côté user
-   * 
+   * AnimalList côté admin
 ## Ibrahïm :
    * Mapping BDD / Objet JS Animals
    * Mapping BDD / Objet JS User
