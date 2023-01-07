@@ -50,5 +50,6 @@ Une page, une route
       Description : String,
       Specie : String,
       map_location : {enum},
+      imgPath : String,
    }
 
