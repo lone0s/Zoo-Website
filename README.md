@@ -38,12 +38,14 @@ Une page, une route
     * Bouton "Favoris"
         * Ne s'affiche pas si on est __pas__ connecté
 ## JS "Objets"
-   User {
+   * Route : `/_api/connectedUser`
+      * User {
       id : int,
       authorisation_level : String,
    }
    
-   Animal {
+   * Route : `/_api/animals`
+      * Animal {
       Name : String,
       Description : String,
       Specie : String,
