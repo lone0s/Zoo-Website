@@ -18,15 +18,22 @@ class MenuBar extends React.Component {
                 // ce qui forcera son rendu, donc l'appel à la méthode render
                 this.setState({events: eventsReponse})
             })*/
+        this.render()
     }
 
     render(){ //TODO
         return(
-            <div>Menu Bar</div>
+            <nav>
+                <a id="acceuil" className='menu_button' href="/acceuil">Acceuil</a>
+                <a id="zoo_map" className='menu_button' href="/zoo_map">Zoo map</a>
+                <a id="connexion" className='menu_button' href='/connexion'>Connexion</a>
+                <a id="inscription" className='menu_button' href='/inscription'>Connexion</a>
+                <a id="animal_all" className='menu_button' href='/animal/all'>Connexion</a>
+            </nav>
         )
     }
 }
 
 
 /**Render**/
-ReactDOM.render(<MenuBar/>, document.getElementById("root"))
+ReactDOM.render(<MenuBar/>, document.getElementById("header"))
