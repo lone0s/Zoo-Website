@@ -3,6 +3,7 @@ const express = require("express")
 const app = express()
 
 let fs = require ('fs')
+const {Urls} = require("./src/urls");
 
 /**Server params**/
 const hostname = '127.0.0.1';
@@ -23,11 +24,11 @@ app.get('/',
     }
 );
 
-app.get('/acceuil', (req, res) => {
+app.get(Urls.Acceuil, (req, res) => {
     res.sendFile(__dirname + '/src/public/acceuil.html');
 });
 
-app.get('/animal/all', (req, res) => {
+app.get(Urls.AnimalsList, (req, res) => {
     res.sendFile(__dirname + '/src/public/animalList.html');
 });
 
