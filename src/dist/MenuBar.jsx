@@ -1,7 +1,7 @@
 /**Imports**/
 import React from "react";
 import ReactDOM from "react-dom";
-import {getUser} from "./roles";
+import {getUser} from "../user";
 import {Urls} from "../urls";
 
 /**Composant**/
