@@ -3,13 +3,11 @@ export const Roles = {
     User : "client",
 }
 
-export const User = () => {
-    return {
-        id : 0,
-        ndc : "Steduthu_admin",
-        mdp : "1532",
-        role : Roles.User,
-    }
+export const __admin = {
+    id : 0,
+    ndc : "Steduthu_admin",
+    mdp : "1532",
+    role : Roles.User,
 }
 
 export function getUser() {
