@@ -8,3 +8,4 @@
 /.parcel-cache
 /dist/*
 ./dist
+dist
