@@ -166,6 +166,15 @@ function deleteUser(id) {
         throw(`User with id ${id} not found`);
 }
 
+function findUser(uname, passwd) {
+    let select = "SELECT * FROM USER WHERE uname = ? AND passwd = ?";
+    let res = db.prepare(select).get(uname, passwd);
+    if (res === undefined)
+        throw(`User ${uname} not found`);
+    else
+        return res;
+}
+
 /*** Roles ***/
 
 function getRole(id) {
@@ -242,6 +251,15 @@ function getFavoriteAnimalsFromUser(idUser) {
     else
         return res;
 }
+function getFavoriteUsersFromAnimal(idAnimal) {
+    let sql = "SELECT * FROM FAVORIS WHERE idAnimal = ?";
+    let res = db.prepare(sql).all(idAnimal);
+    if (res === undefined)
+        throw(`No favorite users for animal ${idAnimal}`);
+    else
+        return res;
+}
+
 
 /*** Espece ***/
 
@@ -382,6 +400,8 @@ function getFavoris() {
     return db.prepare(select).all();
 }
 
+
+
 /*** Tokens ***/
 
 function addUserToken(idUser, token) {
@@ -436,47 +456,6 @@ function getRoleName(id) {
         throw(`No role with id ${id}`);
     else
         return res;
-}
-
-module.exports ={
-    animalExists,
-    addAnimal,
-    getAnimal,
-    deleteAnimal,
-    getAnimaux,
-    userExists,
-    addUser,
-    getUser,
-    deleteUser,
-    getUsers,
-    roleExists,
-    addRole,
-    getRole,
-    getRoles,
-    getRoleName,
-    getFavoris,
-    getFavoriteAnimals,
-    getFavoriteUsers,
-    especeAlreadyExists,
-    addEspece,
-    getEspece,
-    getEspeces,
-    enclosAlreadyExists,
-    addEnclos,
-    getEnclosId,
-    getEnclos,
-    deleteEnclos,
-    removeFavoris,
-    addFavoris,
-    addUserToken,
-    getUserToken,
-    getUserByToken,
-    deleteToken,
-    updateToken,
-    userHasNoToken,
-    getAnimalsFromEnclos,
-    getEnclosFromAnimal,
-    getFavoriteAnimalsFromUser,
 }
 
 /*** Generalizing CRUD operations ***/
@@ -544,3 +523,46 @@ function get(tableName,fields,values) {
 }
 // get("ANIMAL");
 
+
+module.exports ={
+    animalExists,
+    addAnimal,
+    getAnimal,
+    deleteAnimal,
+    getAnimaux,
+    userExists,
+    addUser,
+    getUser,
+    deleteUser,
+    getUsers,
+    roleExists,
+    addRole,
+    getRole,
+    getRoles,
+    getRoleName,
+    getFavoris,
+    getFavoriteAnimals,
+    getFavoriteUsers,
+    especeAlreadyExists,
+    addEspece,
+    getEspece,
+    getEspeces,
+    enclosAlreadyExists,
+    addEnclos,
+    getEnclosId,
+    getEnclos,
+    deleteEnclos,
+    removeFavoris,
+    addFavoris,
+    addUserToken,
+    getUserToken,
+    getUserByToken,
+    deleteToken,
+    updateToken,
+    userHasNoToken,
+    getAnimalsFromEnclos,
+    getEnclosFromAnimal,
+    getFavoriteAnimalsFromUser,
+    getFavoriteUsersFromAnimal,
+    findUser
+}
