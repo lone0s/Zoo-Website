@@ -367,4 +367,7 @@ function getRoleName(id) {
         return res;
 }
 
-
+module.exports ={
+    animalExists,
+    addAnimal
+}
