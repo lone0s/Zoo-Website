@@ -6,7 +6,4 @@
 /.idea/
 /node_modules/
 /.parcel-cache
-/dist/*
-./dist/*
-dist
-dist/*
+dist/
