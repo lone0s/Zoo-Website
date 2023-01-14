@@ -166,6 +166,15 @@ function deleteUser(id) {
         throw(`User with id ${id} not found`);
 }
 
+function findUser(uname, passwd) {
+    let select = "SELECT * FROM USER WHERE uname = ? AND passwd = ?";
+    let res = db.prepare(select).get(uname, passwd);
+    if (res === undefined)
+        throw(`User ${uname} not found`);
+    else
+        return res;
+}
+
 /*** Roles ***/
 
 function getRole(id) {
@@ -209,7 +218,7 @@ function addFavoris(idUser,idAnimal) {
     throw(`Favorite between user ${idUser} and animal ${idAnimal} already exists`);
 }
 
-function removeFavorite(idUser,idAnimal) {
+function removeFavoris(idUser, idAnimal) {
     let del = "DELETE FROM FAVORIS WHERE idUser = ? AND idAnimal = ?";
     let res = db.prepare(del).run(idUser,idAnimal);
     if (res.changes !== 1)
@@ -233,6 +242,24 @@ function getFavoriteUsers(idAnimal) {
     else
         throw(`No animal with id ${idAnimal}`);
 }
+
+function getFavoriteAnimalsFromUser(idUser) {
+    let sql = "SELECT * FROM ANIMAL WHERE idAnimal IN (SELECT idAnimal FROM FAVORIS WHERE idUser = ?)";
+    let res = db.prepare(sql).all(idUser);
+    if (res === undefined)
+        throw(`No favorite animals for user ${idUser}`);
+    else
+        return res;
+}
+function getFavoriteUsersFromAnimal(idAnimal) {
+    let sql = "SELECT * FROM FAVORIS WHERE idAnimal = ?";
+    let res = db.prepare(sql).all(idAnimal);
+    if (res === undefined)
+        throw(`No favorite users for animal ${idAnimal}`);
+    else
+        return res;
+}
+
 
 /*** Espece ***/
 
@@ -260,7 +287,6 @@ function addEspece(nomEspece) {
 }
 
 /*** Enclos ***/
-
 function getEnclosId(position) {
     let sql = "SELECT idEnclos FROM ENCLOS WHERE position = ?";
     let res = db.prepare(sql).get(position);
@@ -291,6 +317,15 @@ function deleteEnclos(id) {
     let res = db.prepare(del).run(id);
     if (res.changes === 0)
         throw(`No enclos with id ${id}`);
+}
+
+function getEnclosFromAnimal(idAnimal) {
+    let sql = "SELECT * FROM ENCLOS WHERE idEnclos = (SELECT idEnclos FROM ANIMAL WHERE idAnimal = ?)";
+    let res = db.prepare(sql).get(idAnimal);
+    if (res === undefined)
+        throw(`No enclos for animal with id ${idAnimal}`);
+    else
+        return res;
 }
 
 /*** Animal ***/
@@ -325,6 +360,15 @@ function deleteAnimal(id) {
         throw(`No animal with id ${id}`);
 }
 
+function getAnimalsFromEnclos(idEnclos) {
+    let select = "SELECT * FROM ANIMAL WHERE idEnclos = ?";
+    let res = db.prepare(select).all(idEnclos);
+    if (res === undefined)
+        throw(`No animal in enclos ${idEnclos}`);
+    else
+        return res;
+}
+
 /*** Collection getters ***/
 function getUsers() {
     let select = "SELECT * FROM USER";
@@ -356,6 +400,53 @@ function getFavoris() {
     return db.prepare(select).all();
 }
 
+
+
+/*** Tokens ***/
+
+function addUserToken(idUser, token) {
+    let sql = "UPDATE USER SET token = ? WHERE idUser = ?";
+    let res = db.prepare(sql).run(token, idUser);
+    if (res.changes === 0)
+        throw(`No user with id ${idUser}`);
+}
+
+function getUserToken(idUser) {
+    let sql = "SELECT token FROM USER WHERE idUser = ?";
+    let res = db.prepare(sql).get(idUser);
+    if (res === undefined)
+        throw(`No user with id ${idUser}`);
+    else
+        return res;
+}
+
+function getUserByToken(token) {
+    let sql = "SELECT * FROM USER WHERE token = ?";
+    let res = db.prepare(sql).get(token);
+    if (res === undefined)
+        throw(`No user with token ${token}`);
+    else
+        return res;
+}
+
+function deleteToken(idUser) {
+    let sql = "UPDATE USER SET token = NULL WHERE idUser = ?";
+    let res = db.prepare(sql).run(idUser);
+    if (res.changes === 0)
+        throw(`No user with id ${idUser}`);
+}
+
+function updateToken(idUser, token) {
+    let sql = "UPDATE USER SET token = ? WHERE idUser = ?";
+    let res = db.prepare(sql).run(token, idUser);
+    if (res.changes === 0)
+        throw(`No user with id ${idUser}`);
+}
+
+function userHasNoToken(idUser) {
+    return getUserToken(idUser) === null;
+}
+
 /*** Aux ***/
 
 function getRoleName(id) {
@@ -367,7 +458,111 @@ function getRoleName(id) {
         return res;
 }
 
+/*** Generalizing CRUD operations ***/
+
+function insertCreator(tableName, fields) {
+    let sql = `INSERT INTO ${tableName} VALUES (NULL`;
+    for (let i = 0; i < fields.length; i++) {
+        sql += ",?";
+    }
+    sql += ")";
+    return sql;
+}
+
+function deleteCreator(tableName, fields) {
+    let sql = `DELETE FROM ${tableName} WHERE `;
+    for (let i = 0; i < fields.length; i++) {
+        sql += `${fields[i]} = ?`;
+        if (i < fields.length - 1)
+            sql += " AND ";
+    }
+    return sql;
+}
+
+function updateCreator(tableName, fields, id) {
+    let sql = `UPDATE ${tableName} SET `;
+    for (let i = 0; i < fields.length; i++) {
+        sql += `${fields[i]} = ?`;
+        if (i < fields.length - 1)
+            sql += ",";
+    }
+    sql += ` WHERE id${tableName} = ${id}`;
+    return sql;
+}
+
+const tabl = "ANIMAL"
+const flds = Object.keys(animals[0]);
+console.log(flds[0]);
+const values = Object.values(animals[0]);
+
+// const insert = insertCreator(tabl, flds);
+// console.log(insert);
+
+function selectCreator(tableName, fields) {
+    let sql = `SELECT * FROM ${tableName}`;
+    console.log(sql);
+    if (fields !== undefined) {
+        sql += " WHERE ";
+        for (let i = 0; i < fields.length; i++) {
+            sql += `${fields[i]} = ?`;
+            if (i < fields.length - 1)
+                sql += " AND ";
+        }
+    }
+    return sql;
+}
+
+
+function get(tableName,fields,values) {
+    let sql = selectCreator(tableName,fields);
+    let res = db.prepare(sql).get(values);
+    if (res === undefined)
+        throw(`No ${tableName} with ${fields} = ${values}`);
+    else
+        return res;
+}
+// get("ANIMAL");
+
+
 module.exports ={
     animalExists,
-    addAnimal
+    addAnimal,
+    getAnimal,
+    deleteAnimal,
+    getAnimaux,
+    userExists,
+    addUser,
+    getUser,
+    deleteUser,
+    getUsers,
+    roleExists,
+    addRole,
+    getRole,
+    getRoles,
+    getRoleName,
+    getFavoris,
+    getFavoriteAnimals,
+    getFavoriteUsers,
+    especeAlreadyExists,
+    addEspece,
+    getEspece,
+    getEspeces,
+    enclosAlreadyExists,
+    addEnclos,
+    getEnclosId,
+    getEnclos,
+    deleteEnclos,
+    removeFavoris,
+    addFavoris,
+    addUserToken,
+    getUserToken,
+    getUserByToken,
+    deleteToken,
+    updateToken,
+    userHasNoToken,
+    getAnimalsFromEnclos,
+    getEnclosFromAnimal,
+    getFavoriteAnimalsFromUser,
+    getFavoriteUsersFromAnimal,
+    findUser
 }
