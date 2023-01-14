@@ -33,6 +33,10 @@ app.get('/acceuil', (req, res) => {
     res.sendFile(__dirname + '/src/public/acceuil.html');
 });
 
+app.get('/animal/all', (req, res) => {
+    res.sendFile(__dirname + '/src/public/animalList.html');
+});
+
 //TODO : Definir toutes les routes
 
 /**Donnees**/
