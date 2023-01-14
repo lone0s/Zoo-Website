@@ -234,6 +234,15 @@ function getFavoriteUsers(idAnimal) {
         throw(`No animal with id ${idAnimal}`);
 }
 
+function getFavoriteAnimalsFromUser(idUser) {
+    let sql = "SELECT * FROM ANIMAL WHERE idAnimal IN (SELECT idAnimal FROM FAVORIS WHERE idUser = ?)";
+    let res = db.prepare(sql).all(idUser);
+    if (res === undefined)
+        throw(`No favorite animals for user ${idUser}`);
+    else
+        return res;
+}
+
 /*** Espece ***/
 
 function getEspece(id) {
@@ -260,7 +269,6 @@ function addEspece(nomEspece) {
 }
 
 /*** Enclos ***/
-
 function getEnclosId(position) {
     let sql = "SELECT idEnclos FROM ENCLOS WHERE position = ?";
     let res = db.prepare(sql).get(position);
@@ -293,6 +301,15 @@ function deleteEnclos(id) {
         throw(`No enclos with id ${id}`);
 }
 
+function getEnclosFromAnimal(idAnimal) {
+    let sql = "SELECT * FROM ENCLOS WHERE idEnclos = (SELECT idEnclos FROM ANIMAL WHERE idAnimal = ?)";
+    let res = db.prepare(sql).get(idAnimal);
+    if (res === undefined)
+        throw(`No enclos for animal with id ${idAnimal}`);
+    else
+        return res;
+}
+
 /*** Animal ***/
 
 function animalExists(idAnimal) {
@@ -323,6 +340,15 @@ function deleteAnimal(id) {
     let res = db.prepare(del).run(id);
     if (res.changes === 0)
         throw(`No animal with id ${id}`);
+}
+
+function getAnimalsFromEnclos(idEnclos) {
+    let select = "SELECT * FROM ANIMAL WHERE idEnclos = ?";
+    let res = db.prepare(select).all(idEnclos);
+    if (res === undefined)
+        throw(`No animal in enclos ${idEnclos}`);
+    else
+        return res;
 }
 
 /*** Collection getters ***/
@@ -447,7 +473,10 @@ module.exports ={
     getUserByToken,
     deleteToken,
     updateToken,
-    userHasNoToken
+    userHasNoToken,
+    getAnimalsFromEnclos,
+    getEnclosFromAnimal,
+    getFavoriteAnimalsFromUser,
 }
 
 /*** Generalizing CRUD operations ***/

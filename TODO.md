@@ -65,9 +65,9 @@
   ## Souhail :
 * BDD
     * ~~Token~~
-    * Animaux w/ enclos 
+    * ~~Animaux w/ enclos~~ 
     * ~~User w/ token~~
-    * Enclos w/ Animaux
+    * ~~Enclos w/ Animaux~~
     * Acceuil
   ## Erwann :
    * Widget Menu
