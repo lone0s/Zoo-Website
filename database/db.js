@@ -356,6 +356,51 @@ function getFavoris() {
     return db.prepare(select).all();
 }
 
+/*** Tokens ***/
+
+function addUserToken(idUser, token) {
+    let sql = "UPDATE USER SET token = ? WHERE idUser = ?";
+    let res = db.prepare(sql).run(token, idUser);
+    if (res.changes === 0)
+        throw(`No user with id ${idUser}`);
+}
+
+function getUserToken(idUser) {
+    let sql = "SELECT token FROM USER WHERE idUser = ?";
+    let res = db.prepare(sql).get(idUser);
+    if (res === undefined)
+        throw(`No user with id ${idUser}`);
+    else
+        return res;
+}
+
+function getUserByToken(token) {
+    let sql = "SELECT * FROM USER WHERE token = ?";
+    let res = db.prepare(sql).get(token);
+    if (res === undefined)
+        throw(`No user with token ${token}`);
+    else
+        return res;
+}
+
+function deleteToken(idUser) {
+    let sql = "UPDATE USER SET token = NULL WHERE idUser = ?";
+    let res = db.prepare(sql).run(idUser);
+    if (res.changes === 0)
+        throw(`No user with id ${idUser}`);
+}
+
+function updateToken(idUser, token) {
+    let sql = "UPDATE USER SET token = ? WHERE idUser = ?";
+    let res = db.prepare(sql).run(token, idUser);
+    if (res.changes === 0)
+        throw(`No user with id ${idUser}`);
+}
+
+function userHasNoToken(idUser) {
+    return getUserToken(idUser) === null;
+}
+
 /*** Aux ***/
 
 function getRoleName(id) {
@@ -396,7 +441,13 @@ module.exports ={
     getEnclos,
     deleteEnclos,
     removeFavoris,
-    addFavoris
+    addFavoris,
+    addUserToken,
+    getUserToken,
+    getUserByToken,
+    deleteToken,
+    updateToken,
+    userHasNoToken
 }
 
 /*** Generalizing CRUD operations ***/

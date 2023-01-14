@@ -63,12 +63,12 @@
    * CSS Global
    * AnimalList côté user
   ## Souhail :
-   * BDD
-     * Token
-     * Animaux w/ enclos
-     * User w/ token
-     * Enclos w/ Animaux
-   * Acceuil
+* BDD
+    * ~~Token~~
+    * Animaux w/ enclos 
+    * ~~User w/ token~~
+    * Enclos w/ Animaux
+    * Acceuil
   ## Erwann :
    * Widget Menu
    * AnimalList côté admin
