@@ -9,9 +9,9 @@ Choix tech : SQLite
 |ANIMAUX|      USERS   |    ESPECE |    ENCLOS |       TOKEN   |    FAVORIS |    ROLE   |
 |-------|   -----------|    -------|    -------|    -----------|    -       |    -      |
 |id     |   id         |    id     |    id     |    id         |    user    |   id      |
-|nom    |   ndc        |    nom    |    pos    |    user       |    animal  |     nom   |
+|nom    |   ndc        |    nom    |    pos    |    user       |    animal  |   nom     |
 |espece |   mdp        |           |           |    lifetime   |            |           |
-|       |   role       |           |           |               |            |           |  
+|imagePath| role       |           |           |               |            |           |  
 
 ## PLAN DU SITE
 
@@ -27,15 +27,29 @@ Une page, une route
 
 * Menu
     * Bouton "Accueil" 
-        *  Ne s'affiche pas si on est deja sur la page d'accueuil
+        *  Ne s'affiche pas si on est deja sur la __page d'accueuil__
     * Bouton "Connexion"
-        * Ne s'affiche pas si on est deja connecté
+        * Ne s'affiche pas si on est deja __connecté__
     * Bouton "Inscription" 
-        * Ne s'affiche pas si on est deja connecté
+        * Ne s'affiche pas si on est deja __connecté__
     * Bouton "Déconnexion"
-        * Ne s'affiche pas si on est pas connecté
+        * Ne s'affiche pas si on est __pas__ connecté
     * Bouton "Animaux"
     * Bouton "Favoris"
-        * Ne s'affiche pas si on est pas connecté
-    
+        * Ne s'affiche pas si on est __pas__ connecté
+## JS "Objets"
+   * Route : `/_api/connectedUser`
+      * User {
+      id : int,
+      authorisation_level : String,
+   }
+   
+   * Route : `/_api/animals`
+      * Animal {
+      Name : String,
+      Description : String,
+      Specie : String,
+      map_location : {enum},
+      imgPath : String,
+   }
 
