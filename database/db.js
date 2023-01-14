@@ -209,7 +209,7 @@ function addFavoris(idUser,idAnimal) {
     throw(`Favorite between user ${idUser} and animal ${idAnimal} already exists`);
 }
 
-function removeFavorite(idUser,idAnimal) {
+function removeFavoris(idUser, idAnimal) {
     let del = "DELETE FROM FAVORIS WHERE idUser = ? AND idAnimal = ?";
     let res = db.prepare(del).run(idUser,idAnimal);
     if (res.changes !== 1)
@@ -369,5 +369,98 @@ function getRoleName(id) {
 
 module.exports ={
     animalExists,
-    addAnimal
+    addAnimal,
+    getAnimal,
+    deleteAnimal,
+    getAnimaux,
+    userExists,
+    addUser,
+    getUser,
+    deleteUser,
+    getUsers,
+    roleExists,
+    addRole,
+    getRole,
+    getRoles,
+    getRoleName,
+    getFavoris,
+    getFavoriteAnimals,
+    getFavoriteUsers,
+    especeAlreadyExists,
+    addEspece,
+    getEspece,
+    getEspeces,
+    enclosAlreadyExists,
+    addEnclos,
+    getEnclosId,
+    getEnclos,
+    deleteEnclos,
+    removeFavoris,
+    addFavoris
 }
+
+/*** Generalizing CRUD operations ***/
+
+function insertCreator(tableName, fields) {
+    let sql = `INSERT INTO ${tableName} VALUES (NULL`;
+    for (let i = 0; i < fields.length; i++) {
+        sql += ",?";
+    }
+    sql += ")";
+    return sql;
+}
+
+function deleteCreator(tableName, fields) {
+    let sql = `DELETE FROM ${tableName} WHERE `;
+    for (let i = 0; i < fields.length; i++) {
+        sql += `${fields[i]} = ?`;
+        if (i < fields.length - 1)
+            sql += " AND ";
+    }
+    return sql;
+}
+
+function updateCreator(tableName, fields, id) {
+    let sql = `UPDATE ${tableName} SET `;
+    for (let i = 0; i < fields.length; i++) {
+        sql += `${fields[i]} = ?`;
+        if (i < fields.length - 1)
+            sql += ",";
+    }
+    sql += ` WHERE id${tableName} = ${id}`;
+    return sql;
+}
+
+const tabl = "ANIMAL"
+const flds = Object.keys(animals[0]);
+console.log(flds[0]);
+const values = Object.values(animals[0]);
+
+// const insert = insertCreator(tabl, flds);
+// console.log(insert);
+
+function selectCreator(tableName, fields) {
+    let sql = `SELECT * FROM ${tableName}`;
+    console.log(sql);
+    if (fields !== undefined) {
+        sql += " WHERE ";
+        for (let i = 0; i < fields.length; i++) {
+            sql += `${fields[i]} = ?`;
+            if (i < fields.length - 1)
+                sql += " AND ";
+        }
+    }
+    return sql;
+}
+
+
+function get(tableName,fields,values) {
+    let sql = selectCreator(tableName,fields);
+    let res = db.prepare(sql).get(values);
+    if (res === undefined)
+        throw(`No ${tableName} with ${fields} = ${values}`);
+    else
+        return res;
+}
+// get("ANIMAL");
+
