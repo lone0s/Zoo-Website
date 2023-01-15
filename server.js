@@ -3,6 +3,7 @@ import express from "express"
 const app = express()
 import fs from "fs"
 import Database from "better-sqlite3";
+
 /**Server params**/
 const hostname = '127.0.0.1';
 const port = 8000;
@@ -11,21 +12,15 @@ import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-import {getUsers} from './database/db.js';
-
+/*** DB init ***/
 export let db = new Database("./database/dbzoo.db", {},{verbose : console.log}, (err) => {
     if (err)
         throw("Database connection failed : " + err.message);
-    else {
-        db.pragma('journal_mode = WAL');
-        db.pragma('synchronous = NORMAL');
-    }
+    db.pragma('journal_mode = WAL');
+    db.pragma('synchronous = NORMAL');
+    if(db.open)
+        console.log("Database connection success");
 });
-
-if(db.open) {
-    console.log("Database connection success");
-}
 
 /**Bootstrap**/
 
@@ -71,6 +66,7 @@ app.get('/animal/all', (req, res) => {
 
 /**Donnees**/
 
+/*
 app.post("/_api/connectedUser", (req, res)=>{
     //TODO
 });
@@ -78,6 +74,7 @@ app.post("/_api/connectedUser", (req, res)=>{
 app.post("/_api/animals", (req, res)=>{
     //TODO
 });
+*/
 
 /**------------------------------------------------------------------------------------------------**/
 
