@@ -17,10 +17,15 @@ import {getUsers} from './database/db.js';
 export let db = new Database("./database/dbzoo.db", {},{verbose : console.log}, (err) => {
     if (err)
         throw("Database connection failed : " + err.message);
-    else console.log("Database connection success");
-    db.pragma('journal_mode = WAL');
-    db.pragma('synchronous = NORMAL');
+    else {
+        db.pragma('journal_mode = WAL');
+        db.pragma('synchronous = NORMAL');
+    }
 });
+
+if(db.open) {
+    console.log("Database connection success");
+}
 
 /**Bootstrap**/
 
