@@ -1,15 +1,29 @@
 /**Consts decls**/
-const express = require("express")
+import express from "express"
 const app = express()
-
-let fs = require ('fs')
+import fs from "fs"
+import Database from "better-sqlite3";
 
 /**Server params**/
 const hostname = '127.0.0.1';
 const port = 8000;
+import path from 'path';
+import {fileURLToPath} from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/*** DB init ***/
+export let db = new Database("./database/dbzoo.db", {},{verbose : console.log}, (err) => {
+    if (err)
+        throw("Database connection failed : " + err.message);
+    db.pragma('journal_mode = WAL');
+    db.pragma('synchronous = NORMAL');
+    if(db.open)
+        console.log("Database connection success");
+});
 
 /**Bootstrap**/
-const path = require('path');
+
 app.use(
     express.static(path.join(__dirname, "node_modules/bootstrap/dist/"))
 );
@@ -52,6 +66,7 @@ app.get('/animal/all', (req, res) => {
 
 /**Donnees**/
 
+/*
 app.post("/_api/connectedUser", (req, res)=>{
     //TODO
 });
@@ -59,6 +74,7 @@ app.post("/_api/connectedUser", (req, res)=>{
 app.post("/_api/animals", (req, res)=>{
     //TODO
 });
+*/
 
 /**------------------------------------------------------------------------------------------------**/
 
