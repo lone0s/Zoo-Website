@@ -1,15 +1,31 @@
 /**Consts decls**/
-const express = require("express")
+import express from "express"
 const app = express()
-
-let fs = require ('fs')
+import fs from "fs"
 
 /**Server params**/
 const hostname = '127.0.0.1';
 const port = 8000;
+import path from 'path';
+import {fileURLToPath} from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/*** Test solution ***/
+
+import {db} from './database/db.js';
+console.log(db.prepare("SELECT * FROM sqlite_master").all());
+
+
+
+function getUsers() {
+    let select = "SELECT * FROM USER";
+    return db.prepare(select).all();
+}
+
 
 /**Bootstrap**/
-const path = require('path');
+
 app.use(
     express.static(path.join(__dirname, "node_modules/bootstrap/dist/"))
 );

@@ -1,15 +1,9 @@
-// const sqlite3 = require('sqlite3').verbose();
-const Sqlite3DB = require('better-sqlite3');
+import Database from "better-sqlite3";
 
-let db = new Sqlite3DB("./dbzoo.db",{}/*,{verbose : console.log}*/, (err) => {
+let db = new Database("./dbzoo.db",{}/*,{verbose : console.log}*/, (err) => {
     if (err)
         throw("Database connection failed : " + err.message);
 });
-
-if (db.open)
-    console.log("Database connection successful");
-else
-    throw("Database connection failed");
 
 function stopDb() {
    db.close();
@@ -492,7 +486,7 @@ function updateCreator(tableName, fields, id) {
 
 const tabl = "ANIMAL"
 const flds = Object.keys(animals[0]);
-console.log(flds[0]);
+// console.log(flds[0]);
 const values = Object.values(animals[0]);
 
 // const insert = insertCreator(tabl, flds);
@@ -521,10 +515,8 @@ function get(tableName,fields,values) {
     else
         return res;
 }
-// get("ANIMAL");
 
-
-module.exports ={
+export {
     animalExists,
     addAnimal,
     getAnimal,
@@ -564,5 +556,7 @@ module.exports ={
     getEnclosFromAnimal,
     getFavoriteAnimalsFromUser,
     getFavoriteUsersFromAnimal,
-    findUser
-}
+    findUser,
+    // connectToDb,
+    db
+};
