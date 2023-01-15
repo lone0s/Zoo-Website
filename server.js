@@ -33,6 +33,14 @@ app.get('/acceuil', (req, res) => {
     res.sendFile(__dirname + '/src/public/acceuil.html');
 });
 
+app.get('/inscription', (req, res) => {
+    res.sendFile(__dirname + '/src/public/inscription.html');
+});
+
+app.get('/connexion', (req, res) => {
+    res.sendFile(__dirname + '/src/public/connexion.html');
+});
+
 app.get('/animal/all', (req, res) => {
     res.sendFile(__dirname + '/src/public/animalList.html');
 });
