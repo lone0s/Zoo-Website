@@ -2,7 +2,7 @@
 import express from "express"
 const app = express()
 import fs from "fs"
-
+import Database from "better-sqlite3";
 /**Server params**/
 const hostname = '127.0.0.1';
 const port = 8000;
@@ -11,18 +11,16 @@ import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-/*** Test solution ***/
 
-import {db} from './database/db.js';
-console.log(db.prepare("SELECT * FROM sqlite_master").all());
+import {getUsers} from './database/db.js';
 
-
-
-function getUsers() {
-    let select = "SELECT * FROM USER";
-    return db.prepare(select).all();
-}
-
+export let db = new Database("./database/dbzoo.db", {},{verbose : console.log}, (err) => {
+    if (err)
+        throw("Database connection failed : " + err.message);
+    else console.log("Database connection success");
+    db.pragma('journal_mode = WAL');
+    db.pragma('synchronous = NORMAL');
+});
 
 /**Bootstrap**/
 

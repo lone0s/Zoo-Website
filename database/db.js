@@ -1,9 +1,6 @@
 import Database from "better-sqlite3";
 
-let db = new Database("./dbzoo.db",{}/*,{verbose : console.log}*/, (err) => {
-    if (err)
-        throw("Database connection failed : " + err.message);
-});
+import {db} from "../server.js";
 
 function stopDb() {
    db.close();
