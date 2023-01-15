@@ -14,6 +14,9 @@ app.use(
     express.static(path.join(__dirname, "node_modules/bootstrap/dist/"))
 );
 
+/**Répertoire public rendu... public**/
+app.use("/public", express.static(path.join(__dirname, "src/public/")));
+
 /**Routes decls**/
 //const {eventRouter} = require("./event-router")
 
@@ -31,6 +34,18 @@ app.get('/',
 
 app.get('/acceuil', (req, res) => {
     res.sendFile(__dirname + '/src/public/acceuil.html');
+});
+
+app.get('/inscription', (req, res) => {
+    res.sendFile(__dirname + '/src/public/inscription.html');
+});
+
+app.get('/connexion', (req, res) => {
+    res.sendFile(__dirname + '/src/public/connexion.html');
+});
+
+app.get('/animal/all', (req, res) => {
+    res.sendFile(__dirname + '/src/public/animalList.html');
 });
 
 //TODO : Definir toutes les routes

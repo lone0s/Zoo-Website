@@ -44,16 +44,16 @@
  ### Ajout :
    * ~~Animal~~
    * ~~Utilisateur~~
-   * Token
+   * ~~Token~~
    * ~~Espèce~~
  ### Suppresion :
-   * Token
+   * ~~Token~~
    * ~~Animal~~
    * ~~User~~
  ### Accès :
-   * Animaux w/ enclos
-   * User w/ token
-   * Enclos w/ Animaux
+   * ~~Animaux w/ enclos~~
+   * ~~User w/ token~~
+   * ~~Enclos w/ Animaux~~
    * ~~Enclos~~
 
 
