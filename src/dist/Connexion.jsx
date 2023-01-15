@@ -39,7 +39,7 @@ class Connexion extends React.Component {
 						<div className="col-xs-12 col-sm-10">
 							<div className="card mb-5">
 								<div className="card-header text-center" style={{background: '#dee2e6'}}>
-									<h3>S'authentifier</h3>
+									<h3>Connexion</h3>
 								</div>
 								<div className="card-body">
 									<div className="form-control">
