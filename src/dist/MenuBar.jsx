@@ -21,17 +21,82 @@ class MenuBar extends React.Component {
 
     render(){
         return(
-            <nav>
-                {window.location.pathname === Urls.Acceuil ? <a/> : <button id="acceuil" className='menu_button' onClick={() => {window.location.href = Urls.Acceuil;}}>Acceuil;</button>}
-                <button id="animal_all" className='menu_button' onClick={() => {window.location.href = Urls.AnimalsList;}}>Animal list</button>
-                <button id="zoo_map" className='menu_button' onClick={() => {window.location.href = Urls.ZooMap;}}>Zoo map</button>
-                {this.state.connectedUser === undefined ? <a/> : <button id="favorites" className="menu_button" onClick={() => {window.location.href = Urls.Favorites;}}>Favorites</button>}
-
-                {this.state.connectedUser === undefined ? <button id="connexion" className='menu_button' onClick={() => {window.location.href = Urls.Connexion;}}>Connexion</button> : <a/>}
-                {this.state.connectedUser === undefined ? <button id="inscription" className='menu_button' onClick={() => {window.location.href = Urls.Inscription;}}>Inscription</button> : <a/>}
-                {this.state.connectedUser !==undefined ? <button id="disconnect" className='menu_button' onClick={() => {this.setState({connectedUser : undefined})}}>Disconnect</button> : <a/>}
-
-            </nav>
+            <div>
+                <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+                    <div className="container-fluid">
+                        <a className="navbar-brand" href={Urls.Acceuil}>Accueil</a>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            {this.state.connectedUser === undefined ? (
+                                <ul className="navbar-nav me-auto mb-2 mb-md-0">
+                                    <li className="nav-item">
+                                        <nobr>
+                                            <a
+                                                className="navbar-link"
+                                                href={Urls.Inscription}
+                                            >Inscription
+                                            </a>
+                                        </nobr>
+                                    </li>
+                                    <li className="nav-item">
+                                        <nobr>
+                                            <a
+                                                className="navbar-link"
+                                                href={Urls.Connexion}
+                                            >Connexion
+                                            </a>
+                                        </nobr>
+                                    </li>
+                                </ul>
+                            ) : (
+                                <div>
+                                    <ul className="navbar-nav me-auto mb-2 mb-md-0">
+                                        <li className="nav-item">
+                                            <nobr>
+                                                <a
+                                                    className="navbar-link"
+                                                    href={Urls.AnimalsList}
+                                                >Animal list
+                                                </a>
+                                            </nobr>
+                                        </li>
+                                        <li className="nav-item">
+                                            <nobr>
+                                                <a
+                                                    className="navbar-link"
+                                                    href={Urls.ZooMap}
+                                                >Zoo map
+                                                </a>
+                                            </nobr>
+                                        </li>
+                                        <li className="nav-item">
+                                            <nobr>
+                                                <a
+                                                    className="navbar-link"
+                                                    href={Urls.Favorites}
+                                                >Favorites
+                                                </a>
+                                            </nobr>
+                                        </li>
+                                    </ul>
+                                    <a
+                                        className="btn btn-danger my-2 my-sm-0"
+                                        onClick={() => {this.setState({connectedUser : undefined})}}
+                                    >Déconnexion
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </nav>
+                <br/>
+                <br/>
+                <br/>
+            </div>
         )
     }
 }
