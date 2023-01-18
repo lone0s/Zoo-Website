@@ -14,6 +14,7 @@ function AnimalsList() {
         .then((res) => res.json())
         .then((eventsReponse) => {
             animalsJSObj = eventsReponse
+            console.log(eventsReponse)
         })
     console.log(animalsJSObj)
 

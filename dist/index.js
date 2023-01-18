@@ -2503,11 +2503,11 @@ process.umask = function() {
     return 0;
 };
 
-},{}],"bdFwH":[function(require,module,exports) {
+},{}],"68y7h":[function(require,module,exports) {
 "use strict";
 var global = arguments[3];
 var HMR_HOST = null;
-var HMR_PORT = null;
+var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 module.bundle.HMR_BUNDLE_ID = "7a6896a1d498c491";
@@ -2894,6 +2894,6 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"g9R30":[function(require,module,exports) {
 
-},{}]},["1xC6H","bdFwH","g9R30"], "g9R30", "parcelRequire94c2")
+},{}]},["1xC6H","68y7h","g9R30"], "g9R30", "parcelRequire94c2")
 
 //# sourceMappingURL=index.js.map
