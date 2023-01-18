@@ -37,6 +37,24 @@ class MenuBar extends React.Component {
                                         <nobr>
                                             <a
                                                 className="navbar-link"
+                                                href={Urls.AnimalsList}
+                                            >Animal list
+                                            </a>
+                                        </nobr>
+                                    </li>
+                                    <li className="nav-item">
+                                        <nobr>
+                                            <a
+                                                className="navbar-link"
+                                                href={Urls.ZooMap}
+                                            >Zoo map
+                                            </a>
+                                        </nobr>
+                                    </li>
+                                    <li className="nav-item">
+                                        <nobr>
+                                            <a
+                                                className="navbar-link"
                                                 href={Urls.Inscription}
                                             >Inscription
                                             </a>
@@ -55,24 +73,6 @@ class MenuBar extends React.Component {
                             ) : (
                                 <div>
                                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                                        <li className="nav-item">
-                                            <nobr>
-                                                <a
-                                                    className="navbar-link"
-                                                    href={Urls.AnimalsList}
-                                                >Animal list
-                                                </a>
-                                            </nobr>
-                                        </li>
-                                        <li className="nav-item">
-                                            <nobr>
-                                                <a
-                                                    className="navbar-link"
-                                                    href={Urls.ZooMap}
-                                                >Zoo map
-                                                </a>
-                                            </nobr>
-                                        </li>
                                         <li className="nav-item">
                                             <nobr>
                                                 <a

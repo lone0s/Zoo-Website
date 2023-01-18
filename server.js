@@ -58,7 +58,7 @@ app.get('/connexion', (req, res) => {
     res.sendFile(__dirname + '/src/public/connexion.html');
 });
 
-app.get('/animal/all', (req, res) => {
+app.get('/animals', (req, res) => {
     res.sendFile(__dirname + '/src/public/animalList.html');
 });
 
