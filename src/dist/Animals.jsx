@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import Animal from "./animals";
+import * as Animal from "../animals";
 
 import React from "react";
 
