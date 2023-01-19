@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as User from "../user";
-import {generateJWT} from "../token";
+import {Link, Routes, Route, useNavigate} from 'react-router-dom';
 
 /**Composant**/
 class Connexion extends React.Component {
@@ -38,23 +38,12 @@ class Connexion extends React.Component {
 			},
 			body: bodyParam
 		})
-			.then((res) => res.json())
-
-		/*
-		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ nomUtilisateur: this.state.courriel, mdp: this.state.motDePasse})
-		};
-
-		let idUtilisateur;
-		fetch('/_api/verifyUser', requestOptions)
-			.then((res) => res.json())
-			.then((eventsReponse) => {
-				idUtilisateur = eventsReponse
-				console.log(eventsReponse)
+			.then((res) => {
+				let utilisateur = res.json();
+				utilisateur.then((result) => {
+					User.setUserCookie(result.idUser);
+				})
 			})
-			*/
 	}
 
 	render() {
