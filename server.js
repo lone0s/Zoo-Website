@@ -14,18 +14,19 @@ const port = 8000;
 import path from 'path';
 import {fileURLToPath} from 'url';
 import {initConnectionToDb} from "./database/db.js";
-
+import {setUserCookie} from "./src/user.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**------------------------------------------------------------------------------------------------**/
 /*** Token init ***/
-dotenv.config({path : '.\\.env'})
+dotenv.config({path : './.env'})
+console.log(process.env.JWT_SECRET_KEY)
 /**------------------------------------------------------------------------------------------------**/
 /*** DB init ***/
 const db = initConnectionToDb();
-
+// setUserCookie(1);
 /**------------------------------------------------------------------------------------------------**/
 /**Répertoire public rendu... public**/
 app.use("/public", express.static(path.join(__dirname, "src/public/")));
