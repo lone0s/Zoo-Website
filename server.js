@@ -14,6 +14,8 @@ const port = 8000;
 import path from 'path';
 import {fileURLToPath} from 'url';
 import {initConnectionToDb} from "./database/db.js";
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -70,7 +72,7 @@ app.get("/user/validateToken", (req, res) => {
 app.use(bodyParser.json());
 
 app.post("/_api/connectionUser", (req, res)=>{
-    let idUtilisateur = new Array();
+    let idUtilisateur = [];
 
     try {
         idUtilisateur = Db.findUser(req.body.courriel, req.body.motDePasse);

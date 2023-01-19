@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import {generateJWT} from './token';
+import {generateJWT} from './token.js';
 
 export const Roles = {
     Admin : "admin",
@@ -18,9 +18,7 @@ export function setUserCookie(idUtilisateur) {
     const joursExpiration = 1;
     d.setTime(d.getTime() + (joursExpiration*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();
-
     console.log(generateJWT(idUtilisateur));
-
     document.cookie = generateJWT(idUtilisateur)+"="+uuidv4()+";"+expires;
 }
 
