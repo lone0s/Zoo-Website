@@ -11,6 +11,7 @@ const hostname = '127.0.0.1';
 const port = 8000;
 import path from 'path';
 import {fileURLToPath} from 'url';
+import {initConnectionToDb} from "./database/db.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -22,14 +23,7 @@ dotenv.config();
 
 /**------------------------------------------------------------------------------------------------**/
 /*** DB init ***/
-export let db = new Database("./database/dbzoo.db", {},{verbose : console.log}, (err) => {
-    if (err)
-        throw("Database connection failed : " + err.message);
-    db.pragma('journal_mode = WAL');
-    db.pragma('synchronous = NORMAL');
-});
-if(db.open)
-    console.log("Database connection success");
+const db = initConnectionToDb();
 
 /**------------------------------------------------------------------------------------------------**/
 /**Répertoire public rendu... public**/

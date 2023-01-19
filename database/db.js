@@ -1,6 +1,17 @@
 import Database from "better-sqlite3";
 
-import {db} from "../server.js";
+const db = new Database("./database/dbzoo.db", {}, {verbose: console.log}, function (err) {
+    if (err) {
+        console.error(err.message);
+    }
+    console.log('Connected to the database.');
+    this.pragma('journal_mode = WAL');
+    this.pragma('synchronous = NORMAL');
+});
+
+export function initConnectionToDb() {
+    return db;
+}
 
 function stopDb() {
    db.close();
