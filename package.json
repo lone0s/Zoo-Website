@@ -1,7 +1,6 @@
 {
   "scripts": {
     "start": "nodemon server.js",
-    "_comment": "react parcel index.jsx ./src/dist/acceuil.jsx ./src/dist/MenuBar.jsx ./src/dist/Animals.jsx -p 1234",
     "react": "parcel index.jsx src/dist/*.jsx -p 1234",
     "build": "parcel build index.jsx src/dist/*.jsx"
   },
