@@ -1,9 +1,9 @@
 {
   "scripts": {
     "start": "nodemon server.js",
-    "_comment": "react parcel index.jsx ./src/dist/acceuil.jsx ./src/dist/MenuBar.jsx -p 1234",
+    "_comment": "react parcel index.jsx ./src/dist/acceuil.jsx ./src/dist/MenuBar.jsx ./src/dist/Animals.jsx -p 1234",
     "react": "parcel index.jsx src/dist/*.jsx -p 1234",
-    "build": "parcel build index.jsx ./src/dist/acceuil.jsx"
+    "build": "parcel build index.jsx src/dist/*.jsx"
   },
   "dependencies": {
     "better-sqlite3": "^8.0.1",
@@ -23,6 +23,7 @@
     "browserify-zlib": "^0.2.0",
     "crypto-browserify": "^3.12.0",
     "events": "^3.3.0",
+    "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "querystring-es3": "^0.2.1",

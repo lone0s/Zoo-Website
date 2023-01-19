@@ -4,7 +4,7 @@ const app = express()
 import fs from "fs"
 import Database from "better-sqlite3";
 import jwt from "jsonwebtoken"
-import dotenv from "dotenv"
+import * as dotenv from "dotenv"
 
 /**Server params**/
 const hostname = '127.0.0.1';
@@ -17,10 +17,7 @@ const __dirname = path.dirname(__filename);
 
 /**------------------------------------------------------------------------------------------------**/
 /*** Token init ***/
-dotenv.config();
-
-
-
+dotenv.config({path : '.\\.env'})
 /**------------------------------------------------------------------------------------------------**/
 /*** DB init ***/
 const db = initConnectionToDb();
@@ -56,7 +53,7 @@ app.get('/connexion', (req, res) => {
     res.sendFile(__dirname + '/src/public/connexion.html');
 });
 
-app.get('/animal/all', (req, res) => {
+app.get('/animals', (req, res) => {
     res.sendFile(__dirname + '/src/public/animalList.html');
 });
 
