@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export const Roles = {
     Admin : "admin",
     User : "client",
@@ -8,6 +10,17 @@ export const __admin = {
     ndc : "Steduthu_admin",
     mdp : "1532",
     role : Roles.User,
+}
+
+const nameCookieConnection = "idConenction";
+
+export function setUser() {
+    const d = new Date();
+    const joursExpiration = 1;
+    d.setTime(d.getTime() + (joursExpiration*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+
+    document.cookie = nameCookieConnection+"="+uuidv4()+";"+expires;
 }
 
 export function getUser() {

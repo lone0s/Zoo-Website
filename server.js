@@ -1,10 +1,12 @@
 /**Consts decls**/
-import express from "express"
+import express, {response} from "express"
 const app = express()
 import fs from "fs"
 import Database from "better-sqlite3";
 import jwt from "jsonwebtoken"
 import * as dotenv from "dotenv"
+import * as Db from "./database/db.js";
+import bodyParser from "body-parser";
 
 /**Server params**/
 const hostname = '127.0.0.1';
@@ -65,16 +67,24 @@ app.get("/user/validateToken", (req, res) => {
 //TODO : Definir toutes les routes
 
 /**Donnees**/
+app.use(bodyParser.json());
 
-/*
-app.post("/_api/connectedUser", (req, res)=>{
-    //TODO
+app.post("/_api/connectionUser", (req, res)=>{
+    let idUtilisateur = new Array();
+
+    try {
+        idUtilisateur = Db.findUser(req.body.courriel, req.body.motDePasse);
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+    res.send(idUtilisateur);
 });
 
 app.post("/_api/animals", (req, res)=>{
     //TODO
 });
-*/
 
 /**------------------------------------------------------------------------------------------------**/
 

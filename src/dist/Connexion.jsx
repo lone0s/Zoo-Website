@@ -1,6 +1,8 @@
 /**Imports**/
 import React from "react";
 import ReactDOM from "react-dom";
+import * as User from "../user";
+import {generateJWT} from "../token";
 
 /**Composant**/
 class Connexion extends React.Component {
@@ -25,10 +27,34 @@ class Connexion extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		// TODO
-		let db = require("/database/db.js");
-		console.log(db.name);
-		//const utilisateur = test.findUser(this.state.courriel, this.state.motDePasse);
+
+		let bodyParam = JSON.stringify({"courriel": this.state.courriel,"motDePasse": this.state.motDePasse});
+
+		fetch('/_api/connectionUser', {
+			method:"POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: bodyParam
+		})
+			.then((res) => res.json())
+
+		/*
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ nomUtilisateur: this.state.courriel, mdp: this.state.motDePasse})
+		};
+
+		let idUtilisateur;
+		fetch('/_api/verifyUser', requestOptions)
+			.then((res) => res.json())
+			.then((eventsReponse) => {
+				idUtilisateur = eventsReponse
+				console.log(eventsReponse)
+			})
+			*/
 	}
 
 	render() {
