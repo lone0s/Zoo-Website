@@ -34,7 +34,7 @@ const animals = [
 
 const roles = ["ANON","USER","ADMIN","SUPER_ADMIN"];
 
-const users = {uname : "karimBY" , passwd : "kbM12223super4dm!n", role : roles.indexOf("SUPER_ADMIN")};
+const users = {uname : "karimBY" , passwd : "kbsuper4dm!n", role : roles.indexOf("SUPER_ADMIN")};
 
 /**
  * Functions to create all database tables
