@@ -32,7 +32,7 @@ const animals = [
 ];
 
 
-const roles = ["ANON","USER","ADMIN","SUPER_ADMIN"];
+export const roles = ["ANON","USER","ADMIN","SUPER_ADMIN"];
 
 const users = {uname : "karimBY" , passwd : "kbsuper4dm!n", role : roles.indexOf("SUPER_ADMIN")};
 
