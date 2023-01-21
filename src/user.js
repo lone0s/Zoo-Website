@@ -18,7 +18,6 @@ export function setUserCookie(idUtilisateur) {
     const joursExpiration = 1;
     d.setTime(d.getTime() + (joursExpiration*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();
-    console.log(generateJWT(1));
     document.cookie = "test="+uuidv4()+";"+expires;
 }
 
