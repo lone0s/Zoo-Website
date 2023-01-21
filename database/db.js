@@ -144,12 +144,20 @@ function userExists(uname) {
     let res = db.prepare(select).get(uname);
     return res !== undefined;
 }
-function addUser(user) {
+function addUserObj(user) {
     if(!userExists(user.uname)) {
         let insert = "INSERT INTO USER VALUES (NULL,@uname,@passwd,@role)";
         let res = db.prepare(insert).run(user);
     }
     throw(`User ${user.uname} already exists`);
+}
+
+function addUser(uname, passwd, role) {
+    if(!userExists(uname)) {
+        let insert = "INSERT INTO USER VALUES (NULL,@uname,@passwd,@role)";
+        let res = db.prepare(insert).run({uname : uname, passwd : passwd, role : role});
+    }
+    throw(`User ${uname} already exists`);
 }
 
 function getUser(id) {
@@ -531,6 +539,7 @@ export {
     deleteAnimal,
     getAnimaux,
     userExists,
+    addUserObj,
     addUser,
     getUser,
     deleteUser,
