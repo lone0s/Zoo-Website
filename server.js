@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import path from 'path';
 import {fileURLToPath} from 'url';
 import * as Db from "./database/db.js";
-import {getAnimaux} from "./database/db.js";
+import * as user from "./src/user.js";
 
 /**------------------------------------------------- DECLARATIONS --------------------------------------------------**/
 const app = express()
@@ -41,6 +41,8 @@ app.get('/',
         res.redirect('/acceuil')
     }
 );
+
+
 
 app.get('/acceuil', (req, res) => {
     res.sendFile(__dirname + '/src/public/acceuil.html');
@@ -113,3 +115,6 @@ app.listen( 8000, hostname, () => {
 app.use(
     express.static(path.join(__dirname, "node_modules/bootstrap/dist/"))
 );
+
+
+/**------------------------------------------ TESTS ----------------------------------------------**/

@@ -1,7 +1,7 @@
 /**Imports**/
 import React from "react";
 import ReactDOM from "react-dom";
-import {getUser} from "../user";
+import {getConnectedUser} from "../user";
 import {Urls} from "../urls";
 
 /**Composant**/
@@ -10,12 +10,13 @@ class MenuBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            connectedUser : undefined
+            connectedUser : []
         }
     }
 
     componentDidMount() {
-        this.setState({connectedUser : getUser()})
+        this.setState({connectedUser : getConnectedUser()})
+        console.log(this.state.connectedUser)
         this.render()
     }
 
