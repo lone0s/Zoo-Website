@@ -10,13 +10,13 @@ function Animal(props) {
 
 function AnimalsList() {
     let animalsJSObj;
-    fetch('/_api/connectedUser')
+    fetch('/_api/animals')
         .then((res) => res.json())
         .then((eventsReponse) => {
             animalsJSObj = eventsReponse
             console.log(eventsReponse)
         })
-    console.log(animalsJSObj)
+    console.log("ANIMAL OBJECT : ", animalsJSObj)
 
     return <li> { animalsJSObj.map( (Object) => <ul><Animal target={Object}/></ul> ) } </li>
 }
