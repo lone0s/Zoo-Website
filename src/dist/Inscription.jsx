@@ -39,8 +39,7 @@ class Inscription extends React.Component {
 				let utilisateur = res.json();
 				utilisateur.then((result) => {
 					if (JSON.stringify(result) !== "{}") {
-						// TODO
-						// redirection  vers connexion
+						window.location.replace("/connexion");
 					}
 				})
 			})
