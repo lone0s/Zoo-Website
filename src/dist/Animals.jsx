@@ -2,23 +2,45 @@ import ReactDOM from "react-dom";
 import * as Animal from "../animals";
 
 import React from "react";
+import {getUser} from "../user.js";
 
 function Animal(props) {
     console.log(props)
     return <h1>{props.target}</h1>;
 }
 
-function AnimalsList() {
-    let animalsJSObj;
-    fetch('/_api/animals')
-        .then((res) => res.json())
-        .then((eventsReponse) => {
-            animalsJSObj = eventsReponse
-            console.log(eventsReponse)
-        })
-    console.log("ANIMAL OBJECT : ", animalsJSObj)
+class Inscription extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            animals: undefined,
+        };
+    }
 
-    return <li> { animalsJSObj.map( (Object) => <ul><Animal target={Object}/></ul> ) } </li>
+    componentDidMount() {
+        fetch('/_api/animals')
+            .then(
+                (res) => {
+                    console.log("RESPONSE : ", res);
+                    return res.json()
+                }
+            )
+            .then(
+                (eventsReponse) => {
+                    console.log("EVENT RESPONSE : ", eventsReponse);
+                    this.setState({animals : eventsReponse})
+                }
+            )
+        ;
+
+        this.render()
+    }
+
+    render() {
+        return(
+            <li> { this.state.animals.map( ( obj ) => <ul><Animal target={ obj }/></ul> ) } </li>
+        )
+    }
 }
 
-ReactDOM.render(<AnimalsList></AnimalsList>, document.getElementById("root"))
+ReactDOM.render(<AnimalsList/>, document.getElementById("root"))
