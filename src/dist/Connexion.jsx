@@ -41,7 +41,10 @@ class Connexion extends React.Component {
 			.then((res) => {
 				let utilisateur = res.json();
 				utilisateur.then((result) => {
-					User.setUserCookie(result.idUser);
+					if (result.length !== 0) {
+						User.setUserCookie(result.idUser);
+					}
+
 				})
 			})
 	}

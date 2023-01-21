@@ -7,7 +7,6 @@ export function generateJWT(userId) {
         id: userId,
         time: Date()
     }
-    console.log(data);
     const token = jwt.sign(data, jwtSecret, {expiresIn: '3600'});
     return token;
 }
