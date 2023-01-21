@@ -64,7 +64,6 @@ app.get("/user/validateToken", (req, res) => {
 app.get("/_api/animals/:id", (req, res)=>{
     //TODO
     res.status(200).json(Db.getAnimal(req.params.id))
-    //res.status(200).json(getAnimaux())
 });
 app.get("/_api/animals/", (req, res)=>{
     //TODO
