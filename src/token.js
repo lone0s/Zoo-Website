@@ -1,13 +1,14 @@
 import jwt from "jsonwebtoken";
+import * as dotenv from "dotenv";
 
 export function generateJWT(userId) {
     let jwtSecret = process.env.JWT_SECRET_KEY;
     let data = {
-        id : userId,
+        id: userId,
         time: Date()
     }
+    console.log(data);
     const token = jwt.sign(data, jwtSecret, {expiresIn: '3600'});
-    console.log(token);
     return token;
 }
 

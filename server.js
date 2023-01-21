@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken"
 import * as dotenv from "dotenv"
 import * as Db from "./database/db.js";
 import bodyParser from "body-parser";
+import * as User from "./src/user.js";
 
 /**Server params**/
 const hostname = '127.0.0.1';
@@ -22,7 +23,6 @@ const __dirname = path.dirname(__filename);
 /**------------------------------------------------------------------------------------------------**/
 /*** Token init ***/
 dotenv.config({path : './.env'})
-console.log(process.env.JWT_SECRET_KEY)
 /**------------------------------------------------------------------------------------------------**/
 /*** DB init ***/
 const db = initConnectionToDb();
