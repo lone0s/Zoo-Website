@@ -14,8 +14,9 @@ const hostname = '127.0.0.1';
 const port = 8000;
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {initConnectionToDb} from "./database/db.js";
+import * as DB from "./database/db.js";
 import {setUserCookie} from "./src/user.js";
+import {addUser} from "./database/db.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,8 +26,9 @@ const __dirname = path.dirname(__filename);
 dotenv.config({path : './.env'})
 /**------------------------------------------------------------------------------------------------**/
 /*** DB init ***/
-const db = initConnectionToDb();
-// setUserCookie(1);
+const db = DB.initConnectionToDb();
+
+
 /**------------------------------------------------------------------------------------------------**/
 /**Répertoire public rendu... public**/
 app.use("/public", express.static(path.join(__dirname, "src/public/")));

@@ -146,19 +146,25 @@ function userExists(uname) {
 }
 function addUserObj(user) {
     if(!userExists(user.uname)) {
-        let insert = "INSERT INTO USER VALUES (NULL,@uname,@passwd,@role)";
+        let insert = "INSERT INTO USER VALUES (NULL,@uname,@passwd,@role,@token)";
         let res = db.prepare(insert).run(user);
     }
     throw(`User ${user.uname} already exists`);
 }
 
-function addUser(uname, passwd, role) {
+function addUser(uname, passwd, role, token) {
     if(!userExists(uname)) {
-        let insert = "INSERT INTO USER VALUES (NULL,@uname,@passwd,@role)";
-        let res = db.prepare(insert).run({uname : uname, passwd : passwd, role : role});
+        if (token === undefined)
+            token = null;
+        let insert = "INSERT INTO USER VALUES (NULL,@uname,@passwd,@role, @token)";
+        let res = db.prepare(insert).run({uname : uname, passwd : passwd, role : role, token : token});
     }
-    throw(`User ${uname} already exists`);
+    else
+        throw(`User ${uname} already exists`);
 }
+
+
+
 
 function getUser(id) {
     let select = "SELECT * FROM USER WHERE idUser = ?";
