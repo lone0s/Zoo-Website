@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import path from 'path';
 import {fileURLToPath} from 'url';
 import * as Db from "./database/db.js";
+import {getAnimaux} from "./database/db.js";
 
 /**------------------------------------------------- DECLARATIONS --------------------------------------------------**/
 const app = express()
@@ -62,16 +63,15 @@ app.get("/user/validateToken", (req, res) => {
 });
 
 app.get("/_api/animals/:id", (req, res)=>{
-    //TODO
     res.status(200).json(Db.getAnimal(req.params.id))
 });
-app.get("/_api/animals/", (req, res)=>{
-    //TODO
-    res.status(200).json(Db.getAnimaux())
-});
+
+app.get("/_api/animals", (req, res) => {
+    res.send(Db.getAnimaux())
+})
 
 /**------------------------------------------------------------------------------------------------**/
-//TODO : Definir toutes les routes
+
 
 /**Donnees**/
 app.use(bodyParser.json());
@@ -100,9 +100,6 @@ app.post("/_api/connectionUser", (req, res)=>{
     res.send(idUtilisateur);
 });
 
-app.post("/_api/animals", (req, res)=>{
-    //TODO
-});
 
 /**------------------------------------------------------------------------------------------------**/
 /**Server setup**/
