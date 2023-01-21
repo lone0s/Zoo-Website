@@ -74,6 +74,20 @@ app.get("/user/validateToken", (req, res) => {
 /**Donnees**/
 app.use(bodyParser.json());
 
+app.post("/_api/inscriptionUser", (req, res)=>{
+    let result = {};
+
+    try {
+        Db.addUser(req.body.courriel, req.body.motDePasse, Db.roles.indexOf("USER"));
+        result = {"resultat": true};
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+    res.send(result);
+});
+
 app.post("/_api/connectionUser", (req, res)=>{
     let idUtilisateur = [];
 

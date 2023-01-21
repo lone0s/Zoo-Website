@@ -1,6 +1,7 @@
 /**Imports**/
 import React from "react";
 import ReactDOM from "react-dom";
+import * as User from "../user.js";
 
 /**Composant**/
 class Inscription extends React.Component {
@@ -25,8 +26,24 @@ class Inscription extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		// TODO
-		//const utilisateur = test.findUser(this.state.courriel, this.state.motDePasse);
+
+		fetch('/_api/inscriptionUser', {
+			method:"POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({"courriel": this.state.courriel,"motDePasse": this.state.motDePasse})
+		})
+			.then((res) => {
+				let utilisateur = res.json();
+				utilisateur.then((result) => {
+					if (JSON.stringify(result) !== "{}") {
+						// TODO
+						// redirection  vers connexion
+					}
+				})
+			})
 	}
 
 	render() {
