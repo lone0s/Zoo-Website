@@ -43,6 +43,7 @@ class Connexion extends React.Component {
 				utilisateur.then((result) => {
 					if (result.length !== 0) {
 						User.setUserCookie(result.idUser);
+						window.location.replace("/");
 					}
 
 				})
