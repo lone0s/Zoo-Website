@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import {generateJWT} from './token.js';
+import {getUser, getUserByToken, deleteToken, addUserToken, findUser} from "../database/db.js";
 
 export const Roles = {
     Admin : "admin",
@@ -18,10 +19,45 @@ export function setUserCookie(idUtilisateur) {
     const joursExpiration = 1;
     d.setTime(d.getTime() + (joursExpiration*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();
-    document.cookie = "test="+uuidv4()+";"+expires;
+    const token = generateJWT(idUtilisateur);
+    // Experimentation soso
+    // document.cookie = "test="+uuidv4()+";"+expires;
+    document.cookie = "test=" + token + ";" + expires;
+    addUserToken(idUtilisateur, token);
+    console.log(document.cookie);
 }
 
-export function getUser() {
+export function getUserCookie() {
+    document.cookie.split(';').forEach((cookie) => {
+        const [key, value] = cookie.split('=');
+        if(key === "test") {
+            console.log(value);
+            return value;
+        }
+    });
+    return null;
+}
+
+export function isLoggedIn() {
+    let jwtSecret = process.env.JWT_SECRET_KEY;
+    let cookies = document.cookie.split(";");
+    let jwtCookie = cookies.find(c => c.trim().startsWith("test="));
+    if (jwtCookie) {
+        let jwt = jwtCookie.split("=")[1];
+        try {
+            let data = jwt.verify(jwt, jwtSecret);
+            console.log(data);
+            return getUserByToken(jwt);
+        } catch (error) {
+            console.log("Invalid JWT: ", error);
+            return false;
+        }
+    }
+    return false;
+}
+
+
+export function getConnectedUser() {
     let ans = undefined
 
     fetch('/_api/connectedUser')

@@ -1,7 +1,6 @@
 /**Imports**/
 import React from "react";
 import ReactDOM from "react-dom";
-// import {getUsers} from "../../database/db.js";
 
 /**Composant**/
 class Acceuil extends React.Component {

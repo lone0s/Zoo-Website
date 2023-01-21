@@ -45,7 +45,6 @@ class Connexion extends React.Component {
 						User.setUserCookie(result.idUser);
 						window.location.replace("/");
 					}
-
 				})
 			})
 	}
