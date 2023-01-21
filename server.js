@@ -5,6 +5,7 @@ import * as database from "./database/db.js";
 import bodyParser from "body-parser";
 import path from 'path';
 import {fileURLToPath} from 'url';
+import * as Db from "./database/db.js";
 
 /**------------------------------------------------- DECLARATIONS --------------------------------------------------**/
 const app = express()
@@ -58,6 +59,16 @@ app.get('/animals', (req, res) => {
 
 app.get("/user/validateToken", (req, res) => {
 
+});
+
+app.get("/_api/animals/:id", (req, res)=>{
+    //TODO
+    res.status(200).json(Db.getAnimal(req.params.id))
+    //res.status(200).json(getAnimaux())
+});
+app.get("/_api/animals/", (req, res)=>{
+    //TODO
+    res.status(200).json(Db.getAnimaux())
 });
 
 /**------------------------------------------------------------------------------------------------**/
