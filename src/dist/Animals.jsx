@@ -9,7 +9,7 @@ function Animal(props) {
     return <h1>{props.target}</h1>;
 }
 
-class Inscription extends React.Component {
+class AnimalsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +17,8 @@ class Inscription extends React.Component {
         };
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
+        console.log("Componnent mounted")
         fetch('/_api/animals')
             .then(
                 (res) => {
@@ -34,9 +35,27 @@ class Inscription extends React.Component {
         ;
 
         this.render()
-    }
+    }*/
 
     render() {
+        console.log('Component rendered')
+        fetch('/_api/animals')
+            .then(
+                (res) => {
+                    console.log("RESPONSE : ", res);
+                    return res.json()
+                }
+            )
+            .then(
+                (eventsReponse) => {
+                    console.log("EVENT RESPONSE : ", eventsReponse);
+                    this.setState({animals : eventsReponse})
+                    console.log(this)
+                }
+            )
+        ;
+
+        console.log("Rendering")
         return(
             <li> { this.state.animals.map( ( obj ) => <ul><Animal target={ obj }/></ul> ) } </li>
         )
