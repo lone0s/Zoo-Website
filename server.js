@@ -103,8 +103,7 @@ app.post("/_api/connectionUser", (req, res)=>{
 });
 
 app.post("/user/getConnectedUser", (req, res) => {
-    console.log(verifyJWT(req.body.token));
-    res.send();
+    res.send(verifyJWT(req.body.token));
 });
 
 
