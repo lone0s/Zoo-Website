@@ -122,6 +122,16 @@ app.post('/_api/jwt/set', (req, res) => {
     }
 });
 
+app.post('/_api/jwt/delete', (req, res) => {
+    try {
+        Db.deleteToken(req.body.idUtilisateur);
+        res.send({resultApi: "ok"})
+    }
+    catch (e) {
+        res.send({});
+    }
+});
+
 
 /**------------------------------------------------------------------------------------------------**/
 /**Server setup**/

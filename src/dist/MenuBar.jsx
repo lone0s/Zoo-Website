@@ -37,14 +37,30 @@ class MenuBar extends React.Component {
 
     handleDemandeDeconnexion(event) {
         event.preventDefault();
-        console.log("demande de deco envoyé par deco2");
-        try {
-            Cookies.remove("test");
-            window.location.replace("/");
-        }
-        catch (e) {
-            console.log(e);
-        }
+
+        fetch('/_api/jwt/delete', {
+            method:"POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({idUtilisateur: this.state.connectedUser})
+        })
+            .then((res) => {
+                res.json().then((result) => {
+                    if (JSON.stringify(result.resultApi) !== "{}") {
+                        if (result.resultApi === "ok") {
+                            try {
+                                Cookies.remove("test");
+                                window.location.replace("/");
+                            }
+                            catch (e) {
+                                console.log(e);
+                            }
+                        }
+                    }
+                })
+            })
     }
 
     render() {
