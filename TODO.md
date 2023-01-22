@@ -62,11 +62,11 @@
    * ~~Connexion / Inscription~~
    * ~~CSS Global~~
    * ~~AnimalList côté user~~
+   * ~~Cookie de l'utilisateur connecté / obtention de l'utilisateur connecté (avec Souhail)~~
   ## Souhail :
    * ~~BDD~~
    * ~~Token~~
    * ~~Acceuil~~
-   * ~~Cookie de l'utilisateur connecté / obtention de l'utilisateur connecté~~
   ## Erwann :
    * ~~Widget Menu~~
    * ~~AnimalList côté admin~~ (Abandonné pour cause de retards sur les tâches d'Ibrahim)
