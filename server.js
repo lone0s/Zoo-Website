@@ -112,6 +112,17 @@ app.post("/user/getConnectedUser", (req, res) => {
     }
 });
 
+app.post('/_api/jwt/set', (req, res) => {
+    console.log("root appele");
+    try {
+        Db.addUserToken(req.body.idUtilisateur, req.body.token);
+        res.send({resultApi: "ok"})
+    }
+    catch (e) {
+        res.send({});
+    }
+});
+
 
 /**------------------------------------------------------------------------------------------------**/
 /**Server setup**/

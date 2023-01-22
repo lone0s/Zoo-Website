@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as User from "../user";
 import {Link, Routes, Route, useNavigate} from 'react-router-dom';
+import Cookies from "js-cookie";
 
 /**Composant**/
 class Connexion extends React.Component {
@@ -43,7 +44,38 @@ class Connexion extends React.Component {
 				utilisateur.then((result) => {
 					if (result.length !== 0) {
 						User.setUserCookie(result.idUser);
-						window.location.replace("/");
+
+						fetch('/user/getConnectedUser', {
+							method:"POST",
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({"token": Cookies.get('test')})
+						})
+							.then((res) => {
+								res.json().then((token) => {
+									this.setState({connectedUser: token.id});
+
+									fetch('/_api/jwt/set', {
+										method:"POST",
+										headers: {
+											'Accept': 'application/json',
+											'Content-Type': 'application/json'
+										},
+										body: JSON.stringify({idUtilisateur: token.id, token: Cookies.get('test')})
+									})
+										.then((res) => {
+											res.json().then((result) => {
+												if (JSON.stringify(result.resultApi) !== "{}") {
+													if (result.resultApi === "ok") {
+														window.location.replace("/");
+													}
+												}
+											})
+										})
+								})
+							})
 					}
 				})
 			})
