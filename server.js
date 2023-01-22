@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import path from 'path';
 import {fileURLToPath} from 'url';
 import * as Db from "./database/db.js";
-import * as user from "./src/user.js";
+import {verifyJWT} from "./src/token.js";
 
 /**------------------------------------------------- DECLARATIONS --------------------------------------------------**/
 const app = express()
@@ -100,6 +100,11 @@ app.post("/_api/connectionUser", (req, res)=>{
         console.log(e);
     }
     res.send(idUtilisateur);
+});
+
+app.post("/user/getConnectedUser", (req, res) => {
+    console.log(verifyJWT(req.body.token));
+    res.send();
 });
 
 
