@@ -1,7 +1,33 @@
 import ReactDOM from "react-dom";
-import * as Animal from "../animals";
-
 import React from "react";
+
+import Cookies from "js-cookie";
+
+const connectedUser = () => {
+    let v;
+    fetch('/user/getConnectedUser', {
+        method:"POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"token": Cookies.get('test')})
+    })
+        .then((res) => {
+            res.json().then((token) => {
+                v =  token.id;
+            })
+        })
+    return v;
+}
+
+const CommuteFavorites = (id) => {
+    //TODO
+}
+
+const HasFavorite = (id) => {
+    return false;
+}
 
 class AnimalsList extends React.Component {
     constructor(props) {
@@ -10,27 +36,22 @@ class AnimalsList extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Componnent mounted")
         fetch('/_api/animals')
             .then(
                 (res) => {
-                    console.log("RESPONSE : ", res);
                     return res.json()
                 }
             )
             .then(
                 (eventsReponse) => {
-                    console.log("EVENT RESPONSE : ", eventsReponse);
                     this.setState({animals : eventsReponse})
-                    console.log(this)
                 }
             )
         ;
     }
 
     render() {
-        console.log('Component rendered')
-
+        console.log(connectedUser())
         return(
             <div className="row justify-content-center">
                 <div className="col-xs-12 col-sm-10">
@@ -46,6 +67,9 @@ class AnimalsList extends React.Component {
                                             <img src={obj.imgPath} alt={obj.imgPath}/>
                                             <h4>{obj.name}</h4>
                                             <p>{obj.nomComplet}</p>
+                                        { connectedUser() !== undefined ?
+                                            <button value={"Ajouter aux favoris"} onClick={CommuteFavorites(obj.id)}/> : <div/>
+                                        }
                                     </li>
                                 )})
                             }
