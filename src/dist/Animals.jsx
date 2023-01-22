@@ -32,17 +32,28 @@ class AnimalsList extends React.Component {
         console.log('Component rendered')
 
         return(
-            <li> { this.state.animals.map( ( obj ) => {
-                return (
-                    <ul>
-                        <div id = {obj.name} className= "animalDisplay">
-                            <img src={obj.imgPath} alt={obj.imgPath}/>
-                            <h4>{obj.name}</h4>
-                            <p>{obj.nomComplet}</p>
+            <div className="row justify-content-center">
+                <div className="col-xs-12 col-sm-10">
+                    <div className="card mb-5">
+                        <div className="card-header text-center" style={{background: '#dee2e6'}}>
+                            <h3>Affichage des animaux</h3>
                         </div>
-                    </ul>
-                )
-            } ) } </li>
+                        <div className="card-body">
+                            <ul>
+                            { this.state.animals.map( ( obj ) => {
+                                return (
+                                    <li id={obj.name}>
+                                            <img src={obj.imgPath} alt={obj.imgPath}/>
+                                            <h4>{obj.name}</h4>
+                                            <p>{obj.nomComplet}</p>
+                                    </li>
+                                )})
+                            }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
