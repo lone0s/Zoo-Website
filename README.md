@@ -13,6 +13,8 @@ Choix tech : SQLite
 |espece |   mdp        |           |           |    lifetime   |            |           |
 |imagePath| role       |           |           |               |            |           |  
 
+le champ imgPath indique le chemin de l'image 
+
 ## PLAN DU SITE
 
 Une page, une route
@@ -23,7 +25,7 @@ Une page, une route
 ### Formulaire de connexion 
 ### Liste animaux
 
-## Composants 
+## Spécification des composants composants 
 
 * Menu
     * Bouton "Accueil" 
@@ -37,19 +39,8 @@ Une page, une route
     * Bouton "Animaux"
     * Bouton "Favoris"
         * Ne s'affiche pas si on est __pas__ connecté
-## JS "Objets"
-   * Route : `/_api/connectedUser`
-      * User {
-      id : int,
-      authorisation_level : String,
-   }
-   
-   * Route : `/_api/animals`
-      * Animal {
-      Name : String,
-      Description : String,
-      Specie : String,
-      map_location : {enum},
-      imgPath : String,
-   }
+
+
+## Répartition des tâches :
+   Voir TODO
 
