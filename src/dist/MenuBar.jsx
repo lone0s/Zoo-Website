@@ -5,10 +5,11 @@ import {Urls} from "../urls";
 import Cookies from 'js-cookie';
 
 /**Composant**/
-export default class MenuBar extends React.Component {
+class MenuBar extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             connectedUser : undefined
         }
@@ -21,12 +22,11 @@ export default class MenuBar extends React.Component {
             },
             body: JSON.stringify({"token": Cookies.get('test')})
         })
-            .then(
-                (res) => {
-                    console.log("RESPONSE : ", res);
-                }
-            )
-
+            .then((res) => {
+                res.json().then((token) => {
+                    this.setState({connectedUser: token.id})
+                })
+            })
     }
 
     componentDidMount() {
@@ -53,24 +53,6 @@ export default class MenuBar extends React.Component {
                                         <nobr>
                                             <a
                                                 className="navbar-link"
-                                                href={Urls.AnimalsList}
-                                            >Animal list
-                                            </a>
-                                        </nobr>
-                                    </li>
-                                    <li className="nav-item">
-                                        <nobr>
-                                            <a
-                                                className="navbar-link"
-                                                href={Urls.ZooMap}
-                                            >Zoo map
-                                            </a>
-                                        </nobr>
-                                    </li>
-                                    <li className="nav-item">
-                                        <nobr>
-                                            <a
-                                                className="navbar-link"
                                                 href={Urls.Inscription}
                                             >Inscription
                                             </a>
@@ -89,6 +71,24 @@ export default class MenuBar extends React.Component {
                             ) : (
                                 <div>
                                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
+                                        <li className="nav-item">
+                                            <nobr>
+                                                <a
+                                                    className="navbar-link"
+                                                    href={Urls.AnimalsList}
+                                                >Animal list
+                                                </a>
+                                            </nobr>
+                                        </li>
+                                        <li className="nav-item">
+                                            <nobr>
+                                                <a
+                                                    className="navbar-link"
+                                                    href={Urls.ZooMap}
+                                                >Zoo map
+                                                </a>
+                                            </nobr>
+                                        </li>
                                         <li className="nav-item">
                                             <nobr>
                                                 <a
