@@ -27,11 +27,24 @@ class MenuBar extends React.Component {
                     this.setState({connectedUser: token.id})
                 })
             })
+
+        this.handleDemandeDeconnexion = this.handleDemandeDeconnexion.bind(this);
     }
 
     componentDidMount() {
         this.render();
+    }
 
+    handleDemandeDeconnexion(event) {
+        event.preventDefault();
+        console.log("demande de deco envoyé par deco2");
+        try {
+            Cookies.remove("test");
+            window.location.replace("/");
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
 
     render() {
@@ -101,7 +114,7 @@ class MenuBar extends React.Component {
                                 </ul>
                                 <a
                                     className="btn btn-danger my-2 my-sm-0"
-                                    onClick={() => {this.setState({connectedUser : undefined})}}
+                                    onClick={this.handleDemandeDeconnexion}
                                 >Déconnexion
                                 </a>
                             </div>
