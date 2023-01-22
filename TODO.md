@@ -63,18 +63,15 @@
    * ~~CSS Global~~
    * ~~AnimalList côté user~~
   ## Souhail :
-   * BDD
+   * ~~BDD~~
    * ~~Token~~
-   * ~~Animaux w/ enclos~~ 
-   * ~~User w/ token~~
-   * ~~Enclos w/ Animaux~~
-   * Acceuil
+   * ~~Acceuil~~
+   * ~~Cookie de l'utilisateur connecté / obtention de l'utilisateur connecté~~
   ## Erwann :
-   * Widget Menu
-   * AnimalList côté admin
+   * ~~Widget Menu~~
+   * ~~AnimalList côté admin~~ (Abandonné pour cause de retards sur les tâches d'Ibrahim)
+   * ~~AnimalList côté Client~~
   ## Ibrahïm :
-   * Mapping BDD / Objet JS Animals
-   * Mapping BDD / Objet JS User
-   * `/_api/connectedUser`
-   * `/_api/animals`
-   * ZooMap
+   * ~~`/_api/connectedUser`~~ (Passé à Alessandro)
+   * ~~`/_api/animals`~~
+   * ~~ZooMap~~
