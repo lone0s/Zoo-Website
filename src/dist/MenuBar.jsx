@@ -1,26 +1,41 @@
 /**Imports**/
 import React from "react";
 import ReactDOM from "react-dom";
-import {getConnectedUser} from "../user";
 import {Urls} from "../urls";
+import Cookies from 'js-cookie';
 
 /**Composant**/
-class MenuBar extends React.Component {
+export default class MenuBar extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            connectedUser : []
+            connectedUser : undefined
         }
+
+        fetch('/user/getConnectedUser', {
+            method:"POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"token": Cookies.get('test')})
+        })
+            .then(
+                (res) => {
+                    console.log("RESPONSE : ", res);
+                }
+            )
+
     }
 
     componentDidMount() {
-        this.setState({connectedUser : getConnectedUser()})
-        console.log(this.state.connectedUser)
-        this.render()
+        //this.setState({connectedUser : getUsers()})
+        this.render();
+
     }
 
-    render(){
+    render() {
         return(
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light fixed-top">
