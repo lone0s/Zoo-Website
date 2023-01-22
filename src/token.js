@@ -7,7 +7,7 @@ export function generateJWT(userId) {
     d.setTime(d.getTime() + (joursExpiration*24*60*60*1000));
     let data = {
         id: userId,
-        time: d
+        time: Date()
     }
     return jwt.sign(data, jwtSecret, {expiresIn: '3600'});
 }
