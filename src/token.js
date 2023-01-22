@@ -2,9 +2,12 @@ import jwt from "jsonwebtoken";
 
 export function generateJWT(userId) {
     let jwtSecret = process.env.JWT_SECRET_KEY;
+    const d = new Date();
+    const joursExpiration = 1;
+    d.setTime(d.getTime() + (joursExpiration*24*60*60*1000));
     let data = {
         id: userId,
-        time: Date()
+        time: d
     }
     return jwt.sign(data, jwtSecret, {expiresIn: '3600'});
 }
