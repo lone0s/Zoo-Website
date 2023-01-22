@@ -60,8 +60,8 @@
 # Attribution des tâches :
   ## Alessandro :
    * ~~Connexion / Inscription~~
-   * CSS Global
-   * AnimalList côté user
+   * ~~CSS Global~~
+   * ~~AnimalList côté user~~
   ## Souhail :
    * BDD
    * ~~Token~~
