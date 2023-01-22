@@ -72,6 +72,10 @@ app.get("/_api/animals", (req, res) => {
     res.send(Db.getAnimaux())
 })
 
+app.get('/zoomap', (req, res) => {
+    res.sendFile(__dirname + '/src/public/zoomap.html');
+});
+
 /**------------------------------------------------------------------------------------------------**/
 
 
